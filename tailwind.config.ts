@@ -57,16 +57,11 @@ export default {
 					muted: 'hsl(var(--gold-muted))',
 					dark: 'hsl(var(--gold-dark))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+			},
+			boxShadow: {
+				'premium': '0 25px 50px -12px hsl(0 0% 0% / 0.8)',
+				'gold': '0 10px 30px -10px hsl(var(--gold) / 0.3)',
+				'glow': '0 0 40px hsl(var(--gold) / 0.2)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -168,7 +168,11 @@ Inspired by xAI aesthetic with luxurious animations
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-glow;
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 40px hsl(var(--gold) / 0.2);
   }
 }
 
