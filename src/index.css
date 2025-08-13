@@ -2,41 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Premium AI Agency Design System - Black/White/Gold Theme 
+Inspired by xAI aesthetic with luxurious animations
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Premium Black Theme */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 45 100% 60%;
 
-    --radius: 0.5rem;
+    /* Premium Gold Accent */
+    --gold: 45 100% 60%;
+    --gold-muted: 45 60% 45%;
+    --gold-dark: 45 80% 35%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(0 0% 8%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-dark)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--gold-muted)) 100%);
+
+    /* Shadows */
+    --shadow-premium: 0 25px 50px -12px hsl(0 0% 0% / 0.8);
+    --shadow-gold: 0 10px 30px -10px hsl(var(--gold) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--gold) / 0.2);
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +120,80 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
+}
+
+@layer components {
+  /* Premium Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-accent to-gold-muted text-accent-foreground font-semibold px-8 py-4 rounded-lg shadow-gold hover:shadow-glow transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-premium {
+    @apply bg-secondary border border-border text-foreground hover:bg-muted hover:shadow-premium transition-all duration-300;
+  }
+
+  /* Premium Card */
+  .card-premium {
+    @apply bg-card border border-border rounded-xl p-8 shadow-premium hover:shadow-glow transition-all duration-300;
+  }
+
+  /* Moving Stars Background */
+  .stars-bg {
+    background: 
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--gold)), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--gold-muted)), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--foreground)), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(var(--gold)), transparent),
+      radial-gradient(2px 2px at 160px 30px, hsl(var(--foreground)), transparent),
+      hsl(var(--background));
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: stars-move 20s linear infinite;
+  }
+
+  /* Premium Text Gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-foreground to-gold bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-muted bg-clip-text text-transparent;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2 cursor-pointer;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Premium Keyframes */
+@keyframes stars-move {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-200px, -100px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--gold) / 0.2); }
+  50% { box-shadow: 0 0 40px hsl(var(--gold) / 0.4); }
 }
